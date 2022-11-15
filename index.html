@@ -7,13 +7,42 @@
     <title>Perros aleatorios</title>
 </head>
 <body>
-    <h1>Perros aleatorios</h1>
+    <h1>Dog App</h1>
+    <span id="error"></span>
 
-    <img id="img1" width="150" alt="Foto perro aleatorio">
-    <img id="img2" width="150" alt="Foto perro aleatorio">
-    <img id="img3" width="150" alt="Foto perro aleatorio">
+    <section id="randomDogs">
+        <h2>Perros aleatorios</h2>        
+
+        <article>
+            <img id="img1" width="150" alt="Foto perro aleatorio">
+            <button id="btn1" onclick="saveFavoriteDog()">
+                Guardar perro en favoritos
+            </button>
+        </article>
+
+        <article>
+            <img id="img2" width="150" alt="Foto perro aleatorio">
+            <button id="btn2" onclick="saveFavoriteDog()">
+                Guardar perro en favoritos
+            </button>
+        </article>
+
+    
+        <button onclick="loadRandomDogs()">
+            Recargar
+        </button>
+    </section>
+
+    <section id="favoritesDogs">
+        <h2>Perros favoritos</h2>
+        <article>
+            <img id="img1" width="150" alt="Foto perro aleatorio">
+            <button>
+                Eliminar perro de favoritos
+            </button>
+        </article>
+    </section>
+
     <script src="./main.js"></script>
-
-    <button onclick="reload()">Recargar</button>
 </body>
 </html>
