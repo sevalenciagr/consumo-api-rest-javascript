@@ -4,6 +4,8 @@ const API_URL_FAVORITES = 'https://api.thedogapi.com/v1/favourites?/search?limit
 
 const API_URL_FAVORITES_DELETE = (id) => `https://api.thedogapi.com/v1/favourites/${id}?search?limit=2&`;
 
+const API_URL_UPLOAD = 'https://api.thedogapi.com/v1/images/upload';
+
 const spanError = document.getElementById('error')
 
 async function loadRandomDogs() {
@@ -93,7 +95,7 @@ async function saveFavoriteDog(id) {
         console.log('Dog save in favorites')
         loadFavoritesDogs();
     }
-}
+};
 
 async function deleteFavoriteDog(id) {
     const res = await fetch(API_URL_FAVORITES_DELETE(id), {
@@ -111,7 +113,35 @@ async function deleteFavoriteDog(id) {
         console.log('Dog delete in favorites')
         loadFavoritesDogs();
     }
-}
+};
+
+async function uploadDogPhoto() {
+    const form = document.getElementById('uploadingForm');
+    const formData = new FormData(form);
+
+    console.log(formData.get('file'));
+
+    const res = await fetch(API_URL_UPLOAD, {
+        method: 'POST',
+        headers: {
+            'X-API-KEY': 'live_iNKOYHqsxpvxZ2ESNznHtHFCk5YwME3byf4YbeZ4wBwTrlU9ogh612VkCbylXc4W', 
+        },
+        body: formData,
+    });
+
+    const data = await res.json();
+
+    if(res.status !== 201) {
+        spanError.innerHTML = "Hubo un error: " + res.status + data.message;
+        console.log({data})
+    } else {
+        console.log('Foto subida')
+        console.log({data})
+        console.log(data.url)
+
+    }
+
+};
 
 
 loadRandomDogs();
